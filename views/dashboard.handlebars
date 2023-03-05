@@ -1,0 +1,52 @@
+{{> layouts/main}}
+
+{{#if user}}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <h1 class="text-center">Welcome to your dashboard, {{user.username}}!</h1>
+        <hr>
+        <a href="/create_post" class="btn btn-success btn-lg mb-4">Create New Post</a>
+        {{#if posts.length}}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each posts}}
+                <tr>
+                  <td>{{@index}}</td>
+                  <td>{{title}}</td>
+                  <td>
+                    <div class="d-flex">
+                      <a href="/posts/{{id}}" class="btn btn-info mr-2">View</a>
+                      <a href="/update_post/{{id}}" class="btn btn-primary mr-2">Edit</a>
+                      <a href="/delete_post/{{id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <h2>You have not created any posts yet.</h2>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1>You must be logged in to view your dashboard.</h1>
+        <hr>
+        <a href="/login" class="btn btn-primary btn-lg mb-4">Login</a>
+        <a href="/signup" class="btn btn-success btn-lg">Signup</a>
+      </div>
+    </div>
+  </div>
+{{/if}}
