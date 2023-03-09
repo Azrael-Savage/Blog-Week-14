@@ -1,28 +1,29 @@
-const Sequelize = require('sequelize');
-const User = require('./user');
-const Post = require('./post');
+const User = require("./user");
+const Post = require("./post");
+const Comment = require("./comment");
 
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+Post.belongsTo(User, {
+  foreignKey: "creator_id",
 });
 
-const models = {
-  User,
-  Post,
-};
-
-Object.values(models).forEach((model) => {
-  if (model.associate) {
-    model.associate(models);
-  }
+User.hasMany(Post, {
+  foreignKey: "creator_id",
 });
 
-module.exports = {
-  sequelize,
-  ...models,
-};
+Post.hasMany(Comment, {
+  foreignKey: "post_id",
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: "post_id",
+});
+
+User.hasMany(Comment, {
+  foreignKey: "creator_id",
+});
+
+Comment.belongsTo(User, {
+  foreignKey: "creator_id",
+});
+
+module.exports = { User, Post, Comment };

@@ -1,28 +1,22 @@
-// Client-side JS for signup page
+const submitBtn = document.getElementById("create-user");
 
-// On page load
-window.onload = function() {
-    // Handle signup form submit event
-    document.getElementById("signupForm").onsubmit = function(event) {
-      event.preventDefault(); // Prevent default form submission behavior
-  
-      // Get form data
-      const formData = new FormData(document.getElementById("signupForm"));
-  
-      // Send POST request to server with form data
-      fetch("/signup", {
-        method: "POST",
-        body: formData
-      })
-        .then(res => {
-          // Redirect to dashboard on successful signup
-          if (res.redirected) {
-            window.location.href = res.url;
-          }
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    };
-  };
-  
+submitBtn.addEventListener("click", async function createSubmit(e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username-signup").value.trim();
+  const password = document.getElementById("password-signup").value.trim();
+
+  if (username && password) {
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      document.location.replace(`/`);
+    } else {
+      alert("Failed to log in");
+    }
+  }
+});

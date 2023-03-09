@@ -1,28 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
-  </head>
-  <body>
-    <div class="container">
-      <form method="POST" action="/login">
-        <h2>Login</h2>
-        {{#if errorMessage}}
-        <p class="error-message">{{errorMessage}}</p>
-        {{/if}}
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>Don't have an account? <a href="/signup">Signup</a></p>
-    </div>
-  </body>
-</html>
+<form class="login-form">
+  <input
+    type="text"
+    class="login-box"
+    id="username-login"
+    placeholder="Username"
+  />
+  <input
+    type="password"
+    class="login-box"
+    id="password-login"
+    placeholder="Password"
+  />
+  <button class="submit-btn" id="login-send">Log In</button>
+</form>
+
+<script src="/js/login.js"></script>
