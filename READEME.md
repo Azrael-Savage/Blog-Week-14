@@ -1,0 +1,33 @@
+- app/
+  - controllers/
+    - blogController.js
+    - userController.js
+  - models/
+    - blog.js
+    - user.js
+  - views/
+    - layouts/
+      - main.handlebars
+    - partials/
+      - blogPost.handlebars
+      - comment.handlebars
+      - loginForm.handlebars
+      - postForm.handlebars
+      - signupForm.handlebars
+    - blog/
+      - index.handlebars
+      - post.handlebars
+    - user/
+      - dashboard.handlebars
+  - routes/
+    - blogRoutes.js
+    - indexRoutes.js
+    - userRoutes.js
+- config/
+  - config.js
+  - database.js
+- public/
+  - css/
+  - js/
+- app.js
+- package.json
