@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Comment, Post, User } = require("../models");
 const withAuth = require("../middleware/auth");
+app.use(express.static("../public/js"));
 
 router.get("/", (req, res) => {
   try {
