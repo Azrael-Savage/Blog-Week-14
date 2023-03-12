@@ -1,17 +1,24 @@
-<form class="login-form">
-  <input
-    type="text"
-    class="login-box"
-    id="username-login"
-    placeholder="Username"
-  />
-  <input
-    type="password"
-    class="login-box"
-    id="password-login"
-    placeholder="Password"
-  />
-  <button class="submit-btn" id="login-send">Log In</button>
-</form>
+<section class="login-page">
+    <div class="form-heading">
+        <h1>Log In</h1>
+    </div>
+    <div class="form-section">
+        <form class="login-form">
+            <div>
+                <label for="username-login">Username</label>
+                <input type="text" class="entry-field" id="username-login" />
+            </div>
+            <div>
+                <label for="password-login">Password</label>
+                <input type="password" class="entry-field" id="password-login" />
+            </div>
+            <div>
+                <button type="submit" class="login-signup-btn">Log In!</button>
+            </div>
+        </form>
+    </div>
 
-<script src="../public/js/login.js"></script>
+    <a href="/signup" class="sign-in-link">sign up instead</a>
+</section>
+
+<script src="/javascript/login.js"></script>
