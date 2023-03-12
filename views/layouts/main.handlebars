@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Tech Blog</title>
+    <title>The Tech Blog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
-    <nav>
-  <a class="navlink" href="/">Home</a><a class="navlink" href="/dashboard">Dashboard</a>
+    <div class="wrapper">
+        <header>
+            <h1>
+                <a href="/">home</a>
+            </h1>
+            <nav>
+                {{#if loggedIn}}
+                <a href="/dashboard">dashboard</a>
+                <button id="logout" class="btn-no-style logout">logout</button>
+                {{else}}
+                <a href="/login">login</a>
+                {{/if}}
+            </nav>
+        </header>
+        <div class="site-row">
+            <div class="site-name">
+                <h1>The Tech Blog</h1>
+            </div>
+        </div>
+        <main>
+            {{{ body }}}
+        </main>
+    </div>
+
     {{#if loggedIn}}
-  <a class="navlink"
-    href="/logout"
-  >Logout</a>
-  {{else}}
-<a class="navlink" href="login">Login</a>
-<a class="navlink" href="signup">Sign Up</a>
-{{/if}}
-</nav>
-<main>
-  
-    {{{body}}}
-</main>
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
 </body>
-<link src="https://code.jquery.com/jquery-3.5.1.min.js"></link>
+
 </html>
