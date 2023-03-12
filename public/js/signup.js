@@ -1,22 +1,27 @@
-const submitBtn = document.getElementById("create-user");
+async function signupFormHandler(event) {
+    event.preventDefault();
 
-submitBtn.addEventListener("click", async function createSubmit(e) {
-	e.preventDefault();
+    const username = document.querySelector('#username-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
 
-	const username = document.getElementById("username-signup").value.trim();
-	const password = document.getElementById("password-signup").value.trim();
+    if (username && password) {
+        const response = await fetch('/api/users', {
+            method: 'post',
+            body: JSON.stringify({
+                username,
+                password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-	if (username && password) {
-		const response = await fetch("/api/signup", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ username, password }),
-		});
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert(response.statusText);
+        }
+    }
+}
 
-		if (response.ok) {
-			document.location.replace(`/`);
-		} else {
-			alert("Failed to log in");
-		}
-	}
-});
+document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
